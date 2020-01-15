@@ -1,0 +1,23 @@
+Topology sort:
+  BFS: degree and neighbour, once degree equal 0, add into result
+  DFS:
+      visited[i] = 0. Exist. Non-visited.
+      visited[i] = 1. Visiting.
+      visited[i] = 2. Visited.
+      
+public boolean dfs(boolean[][] adj, int[] visited, StringBuilder sb, int i) {
+    visited[i] = 1;                            // 1 = visiting
+    for(int j = 0; j < N; j++) {
+        if(adj[i][j]) {                        // connected
+            if(visited[j] == 1) return false;  // 1 => 1, cycle   
+            if(visited[j] == 0) {              // 0 = unvisited
+                if(!dfs(adj, visited, sb, j)) return false;
+            }
+        }
+    }
+    visited[i] = 2;                           // 2 = visited
+    sb.append((char) (i + 'a'));
+    return true;
+}
+
+
