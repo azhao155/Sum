@@ -21,3 +21,7 @@ public boolean dfs(boolean[][] adj, int[] visited, StringBuilder sb, int i) {
 }
 
 
+continous array:
+    presum + hashmap
+    
+ 
