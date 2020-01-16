@@ -103,6 +103,7 @@ PriorityQueue：
 Array:
 	Sort by …
 	Merge interval, sort by start, check new start and old end
+	get start array and end array, two pointer 
 	Hashmap to record presum
 
 Bit operation:
@@ -115,3 +116,10 @@ Bit operation:
 
 Tree:
 	Serilize/deserilize, preorder and BFS
+	
+	
+Parentheses:
+	left_removed, right_removed, pair(dangling left Parentheses)
+	dfs, open, close
+	
+
