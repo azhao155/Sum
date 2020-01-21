@@ -26,9 +26,21 @@ continous array:
     
  
 Array :   
-1.	Hash 作为记忆的方法: 2sum 
+	Hash 作为记忆的方法: 2sum 
+	partition：
+public int partition(int[] A){
+    int n=A.length;
+    int q=-1;
+    for(int i=0;i<n;i++){
+        if(A[i]>0){
+            q++;
+            swap(A,q,i);
+        }
+    }
+    return q;
+}
 
-
+标记方法就是对正数加一个负号
 
 
 Design data structure: 
@@ -132,4 +144,6 @@ nested string:
 	stack, cur_string, cur_num
 	
 dp: 
+	outside layer to use the coin to avoid duplication
 	
+
