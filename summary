@@ -137,6 +137,7 @@ Bit operation:
 
 Tree:
 	Serilize/deserilize, preorder and BFS
+	travser while update global variable, thus updating all the variables
 	
 	
 Parentheses:
@@ -155,5 +156,6 @@ nested string:
 dp: 
 	outside layer to use the coin to avoid duplication
 	
-
+bucket:
+	clock structure, only limited values	
 
