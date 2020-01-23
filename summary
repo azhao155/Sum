@@ -1,5 +1,6 @@
 Topology sort:
   BFS: degree and neighbour, once degree equal 0, add into result
+  	test distance
   DFS:
       visited[i] = 0. Exist. Non-visited.
       visited[i] = 1. Visiting.
@@ -120,6 +121,7 @@ DP:
 
 PriorityQueue：
 	保持局部有序，只在乎極緻
+	two prorioty queue, both needs to enter
 
 Array:
 	Sort by …
@@ -159,3 +161,17 @@ dp:
 bucket:
 	clock structure, only limited values	
 
+regex match:
+            if (p.charAt(j) == '.') {
+                dp[i+1][j+1] = dp[i][j];
+            }
+            if (p.charAt(j) == s.charAt(i)) {
+                dp[i+1][j+1] = dp[i][j];
+            }
+            if (p.charAt(j) == '*') {
+                if (p.charAt(j-1) != s.charAt(i) && p.charAt(j-1) != '.') {
+                    dp[i+1][j+1] = dp[i+1][j-1];
+                } else {
+                    dp[i+1][j+1] = (dp[i+1][j] || dp[i][j+1] || dp[i+1][j-1]);
+                }
+            }
