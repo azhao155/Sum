@@ -58,6 +58,7 @@ Link List:
 	Sort array sum, using two pointer
 	3sum, two pointer for the sum
 	Two pointer, 先走右边，走到符合规定，再动左边去violate
+	first move to child, put child back in main thread
 
 
 
