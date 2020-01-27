@@ -146,6 +146,7 @@ Tree:
 Parentheses:
 	left_removed, right_removed, pair(dangling left Parentheses)
 	dfs, open, close
+	stack to check invalid
 	
 Test justification:
  	try to add the current work, wordlist, accuLen
