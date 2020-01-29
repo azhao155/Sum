@@ -125,6 +125,19 @@ DP:
 PriorityQueue：
 	保持局部有序，只在乎極緻
 	two prorioty queue, both needs to enter
+	update queue:
+        while (k > 0 && !q.isEmpty()) {
+            Map.Entry<Character, Integer> top = q.poll(); // most frequency task
+            top.setValue(top.getValue() - 1); // decrease frequency, meaning it got executed
+            tempList.add(top); // collect task to add back to queue
+            k--;
+            count++; //successfully executed task
+        }
+
+        for (Map.Entry<Character, Integer> e : tempList) {
+            if (e.getValue() > 0) q.add(e); // add valid tasks 
+        }
+
 
 Array:
 	Sort by …
