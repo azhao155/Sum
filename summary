@@ -21,6 +21,8 @@ public boolean dfs(boolean[][] adj, int[] visited, StringBuilder sb, int i) {
     return true;
 }
 
+	if there is word list, could try to build trie to save time.
+
 
 continous array:
     presum + hashmap
