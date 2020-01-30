@@ -1,6 +1,8 @@
 Topology sort:
   BFS: degree and neighbour, once degree equal 0, add into result
   	test distance
+	current level to next level, each one is a collection
+	
   DFS:
       visited[i] = 0. Exist. Non-visited.
       visited[i] = 1. Visiting.
@@ -22,6 +24,9 @@ public boolean dfs(boolean[][] adj, int[] visited, StringBuilder sb, int i) {
 }
 
 	if there is word list, could try to build trie to save time.
+	
+	
+	stack to mimic dfs, if there is no more to go, pop, else add related elements into stack
 
 
 continous array:
@@ -194,6 +199,7 @@ dp:
 	
 bucket:
 	clock structure, only limited values	
+	fixed time range.
 
 regex match:
             if (p.charAt(j) == '.') {
@@ -209,3 +215,6 @@ regex match:
                     dp[i+1][j+1] = (dp[i+1][j] || dp[i][j+1] || dp[i+1][j-1]);
                 }
             }
+	  }
+fix windows length, moving window:
+	use dequeue, stack
