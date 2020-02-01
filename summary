@@ -2,6 +2,7 @@ Topology sort:
   BFS: degree and neighbour, once degree equal 0, add into result
   	test distance
 	current level to next level, each one is a collection
+	nested array
 	
   DFS:
       visited[i] = 0. Exist. Non-visited.
@@ -273,7 +274,10 @@ add new node to self._freq[1]
 reset self._minfreq to 1
 (*) The least frequently used element is the tail element in the DLinkedList with frequency self._minfreq
 
-
-
+ip address validation:
+	if ((s.startsWith("0") && s.length()>1) || (i==3 && Integer.parseInt(s) >= 256)) continue;
+	
+file read:
+	ptr and remainCount
 
 
