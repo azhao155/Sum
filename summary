@@ -218,3 +218,62 @@ regex match:
 	  }
 fix windows length, moving window:
 	use dequeue, stack
+	
+
+Calculator:
+	use stack to process * and /
+	res, preval: last number, curval: cur number, sign 
+	
+        while (i < length && (int)s.charAt(i) <= 57 && (int)s.charAt(i) >= 48) { // int
+            curVal = curVal*10 + (s.charAt(i) - '0');
+            i++;
+        }
+        if (sign == '+') {
+            res += preVal;  // update res
+            preVal = curVal;
+        } else if (sign == '-') {
+            res += preVal;  // update res
+            preVal = -curVal;
+        } else if (sign == '*') {
+            preVal = preVal * curVal; // not update res, combine preVal & curVal and keep loop
+        } else if (sign == '/') {
+            preVal = preVal / curVal; // not update res, combine preVal & curVal and keep loop
+        }
+        if (i < length) { // getting new sign
+            sign = s.charAt(i);
+            i++;
+        }
+	
+	sign + number and then take action
+	
+LFU:
+Explanation
+Each key is mapping to the corresponding node (self._node), where we can retrieve the node in O(1) time.
+
+Each frequency freq is mapped to a Doubly Linked List (self._freq), where all nodes in the DLinkedList have the same frequency, freq. Moreover, each node will be always inserted in the head (indicating most recently used).
+
+A minimum frequency self._minfreq is maintained to keep track of the minimum frequency of across all nodes in this cache, such that the DLinkedList with the min frequency can always be retrieved in O(1) time.
+
+Here is how the algorithm works
+get(key)
+
+query the node by calling self._node[key]
+find the frequency by checking node.freq, assigned as f, and query the DLinkedList that this node is in, through calling self._freq[f]
+pop this node
+update node's frequence, append the node to the new DLinkedList with frequency f+1
+if the DLinkedList is empty and self._minfreq == f, update self._minfreq to f+1.
+return node.val
+put(key, value)
+
+If key is already in cache, do the same thing as get(key), and update node.val as value
+Otherwise:
+if the cache is full, pop the least frequenly used element (*)
+add new node to self._node
+add new node to self._freq[1]
+reset self._minfreq to 1
+(*) The least frequently used element is the tail element in the DLinkedList with frequency self._minfreq
+
+
+
+
+
