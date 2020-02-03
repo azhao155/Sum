@@ -150,6 +150,7 @@ Array:
 	Merge interval, sort by start, check new start and old end
 	get start array and end array, two pointer 
 	Hashmap to record presum
+	Add numbers: two pointer
 
 Bit operation:
 	高位bit作为下一次的status
@@ -333,4 +334,10 @@ for (int i=0; i<n/2; i++)
             matrix[j][n-i-1]=tmp;
 	    
 	   举一个例子，类似0， 1， 然后每次overwrite都是交换x，y元素
-
+ * clockwise rotate
+ * first reverse up to down, then swap the symmetry 
+  * anticlockwise rotate
+ * first reverse left to right, then swap the symmetry
+ 
+ 
+ 
