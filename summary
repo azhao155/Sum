@@ -33,6 +33,9 @@ public boolean dfs(boolean[][] adj, int[] visited, StringBuilder sb, int i) {
 continous array:
     presum + hashmap
     
+Sort:
+	binaray search the ordered array
+	use binaray search tree to comapare large small and stats
  
 Array :   
 	Hash 作为记忆的方法: 2sum 
@@ -151,6 +154,16 @@ Array:
 	get start array and end array, two pointer 
 	Hashmap to record presum
 	Add numbers: two pointer
+	frequency, use bucekt sort, fixed frequency
+	Check interval whether has intesection:
+	
+            int startMax = Math.max(a.start, b.start);
+            int endMin = Math.min(a.end, b.end);
+            
+            if (endMin >= startMax) {
+                res.add(new Interval(startMax, endMin));
+            }
+	    
 
 Bit operation:
 	高位bit作为下一次的status
@@ -218,6 +231,14 @@ regex match:
                 }
             }
 	  }
+	  
+        for i in range(1, n +1):
+            for j in range(1, m+1):
+                if p[j-1] != "*":
+                    dp[i][j] = dp[i-1][j-1] and (p[j-1] == s[i-1] or p[j-1] == "?")
+                else:
+                    dp[i][j] = dp[i-1][j] or dp[i][j-1]
+		    
 fix windows length, moving window:
 	use dequeue, stack
 	
