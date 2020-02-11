@@ -53,6 +53,9 @@ public int partition(int[] A){
 }
 
 标记方法就是对正数加一个负号
+不讲究order的都可以考虑用map
+
+
 
 
 Design data structure: 
@@ -167,6 +170,15 @@ Array:
 	reverse order: stack
 	one pass, usually use map to record previously showed same key position
 	    
+overflow:
+	   if (base >  INT_MAX / 10 || (base == INT_MAX / 10 && str[i] - '0' > 7))
+	   
+	   rate limit, the queue has size of rate, and only compare the first one
+	   
+	   use stack to compare the nearst
+	   
+	   sametimes use dic to identify whether there is period cycle
+
 
 Bit operation:
 	高位bit作为下一次的status
@@ -196,6 +208,25 @@ public List<Integer> inorderTraversal(TreeNode root) {
     }
     return list;
 }
+	
+	
+    	/** @return whether we have a next smallest number */
+    	public boolean hasNext() {		  
+    	      return !stack.isEmpty() || current != null;  
+    	}
+    
+    	    /** @return the next smallest number */
+    	public int next() {
+    		while (current != null) {
+    			stack.push(current);
+    			current = current.left ;
+    		}		
+    		TreeNode t = stack.pop() ;		
+    		current = t.right ;		
+    		return t.val ;
+    	}
+	
+	word dict => trie
 	
 	
 Parentheses:
