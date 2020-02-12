@@ -136,6 +136,8 @@ DP:
             if(dp[i][j]) ++res;
         }
     }
+    
+   revserse same as traverse
 
 Binary Search:
 	要去掉连续的一段
