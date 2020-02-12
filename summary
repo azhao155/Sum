@@ -55,7 +55,7 @@ public int partition(int[] A){
 标记方法就是对正数加一个负号
 不讲究order的都可以考虑用map
 
-
+max stack, 相等或者大于先压最大值
 
 
 Design data structure: 
@@ -73,6 +73,8 @@ Link List:
 	3sum, two pointer for the sum
 	Two pointer, 先走右边，走到符合规定，再动左边去violate
 	first move to child, put child back in main thread
+	
+	merge list, find middle, reverse
 
 
 
@@ -191,6 +193,7 @@ Bit operation:
 Tree:
 	Serilize/deserilize, preorder and BFS
 	travser while update global variable, thus updating all the variables
+	dfs build map, bfs test distance
 	
 public List<Integer> inorderTraversal(TreeNode root) {
     List<Integer> list = new ArrayList<>();
