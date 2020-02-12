@@ -129,6 +129,14 @@ Case 3: If s1[0:cut] is palindrome and there exists s2 is the reversing string o
 
 Case 4: Similiar to case3. If s1[cut+1: ] is palindrome and there exists s2 is the reversing string of s1[0:cut] , then s1+s2 is palindrome.
  
+DP:  
+    for (int i = n - 1; i >= 0; i--) {
+        for (int j = i; j < n; j++) {
+            dp[i][j] = s.charAt(i) == s.charAt(j) && (j - i < 3 || dp[i + 1][j - 1]);
+            if(dp[i][j]) ++res;
+        }
+    }
+
 Binary Search:
 	要去掉连续的一段
 
