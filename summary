@@ -113,6 +113,8 @@ Graph:
     }
 Use rank to check cycle
 
+union find to merge collection
+
 
 Palindrome :
 	Dp  substring 顺序
@@ -138,6 +140,10 @@ DP:
     }
     
    revserse same as traverse
+   
+Please note that the outer loop should be about coins, while the inner loop should be about amount. Or else, there may be duplicates in the result, e.g. for input: amount = 5, coins = [1, 2, 5], it counts [2, 2, 1] and [2, 1, 2] as two different combinations, so it will return 9 rather than 5. All in all, the order of coins doesn't matterin this case, so we set it as the outer loop.
+
+   
 
 Binary Search:
 	要去掉连续的一段
@@ -181,6 +187,8 @@ Array:
 	    
 	reverse order: stack
 	one pass, usually use map to record previously showed same key position
+	
+	non-overlap, left -> right pass including i, right - > left pass including i + 1
 	    
 overflow:
 	   if (base >  INT_MAX / 10 || (base == INT_MAX / 10 && str[i] - '0' > 7))
@@ -206,6 +214,27 @@ Tree:
 	Serilize/deserilize, preorder and BFS
 	travser while update global variable, thus updating all the variables
 	dfs build map, bfs test distance
+	
+use dfs to level traverse:
+
+    private void travel(TreeNode curr, List<List<Integer>> sol, int level)
+    {
+        if(curr == null) return;
+        
+        if(sol.size() <= level)
+        {
+            List<Integer> newLevel = new LinkedList<>();
+            sol.add(newLevel);
+        }
+        
+        List<Integer> collection  = sol.get(level);
+        if(level % 2 == 0) collection.add(curr.val);
+        else collection.add(0, curr.val);
+        
+        travel(curr.left, sol, level + 1);
+        travel(curr.right, sol, level + 1);
+    }
+	
 	
 public List<Integer> inorderTraversal(TreeNode root) {
     List<Integer> list = new ArrayList<>();
