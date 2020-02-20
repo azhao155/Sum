@@ -484,6 +484,8 @@ for (int i=0; i<n/2; i++)
         if (right - left == p.length() && hash[s.charAt(left++)]++ >= 0) count++;
     }
     
+    if calculate maximum, first voilate the condition then move left pointer
+    
 topology sort:
 	neight + indgree
 	
