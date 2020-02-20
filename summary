@@ -4,6 +4,8 @@ Topology sort:
 	current level to next level, each one is a collection
 	nested array
 	
+	if same node could be added into queue multiple time, need to memorize if past will affact future. if yes, still needed to be added into queue
+	
   DFS:
       visited[i] = 0. Exist. Non-visited.
       visited[i] = 1. Visiting.
