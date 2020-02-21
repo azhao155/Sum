@@ -217,6 +217,8 @@ Tree:
 	travser while update global variable, thus updating all the variables
 	dfs build map, bfs test distance
 	
+	BST: in order traverse should be sorted array
+	
 use dfs to level traverse:
 
     private void travel(TreeNode curr, List<List<Integer>> sol, int level)
