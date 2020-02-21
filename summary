@@ -202,6 +202,13 @@ overflow:
 	   sametimes use dic to identify whether there is period cycle
 	   
 	   sliding windows used to check max/min
+	   
+	   reverse word：    
+   while (i < n) {
+      while (i < j || i < n && a[i] == ' ') i++; // skip spaces
+      while (j < i || j < n && a[j] != ' ') j++; // skip non spaces
+      reverse(a, i, j - 1);                      // reverse the word
+    }
 
 
 Bit operation:
