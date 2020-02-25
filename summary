@@ -78,6 +78,7 @@ Link List:
 	
 	merge list, find middle, reverse
 	O1 struct, elements needs to be deleted or added will be in double link list
+	O(1) Add Delete 
 
 
 
