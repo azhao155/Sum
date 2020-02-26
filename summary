@@ -154,6 +154,7 @@ Binary Search:
 
 DP: 
 	考虑最后一步，往往是包含这个元素
+	contious, dp status will including trailing element
 
 
 PriorityQueue：
@@ -193,6 +194,7 @@ Array:
 	one pass, usually use map to record previously showed same key position
 	
 	non-overlap, left -> right pass including i, right - > left pass including i + 1
+	interval solution
 	    
 overflow:
 	   if (base >  INT_MAX / 10 || (base == INT_MAX / 10 && str[i] - '0' > 7))
@@ -265,7 +267,7 @@ public List<Integer> inorderTraversal(TreeNode root) {
     }
     return list;
 }
-	
+	tree to curSum connection
 	
     	/** @return whether we have a next smallest number */
     	public boolean hasNext() {		  
