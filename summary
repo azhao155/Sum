@@ -59,6 +59,7 @@ public int partition(int[] A){
 
 max stack, 相等或者大于先压最大值
 
+binaray search 比较三个点， mid ， target
 
 Design data structure: 
 1.	LRU: 
@@ -79,7 +80,15 @@ Link List:
 	merge list, find middle, reverse
 	O1 struct, elements needs to be deleted or added will be in double link list
 	O(1) Add Delete 
-
+	
+	Dict O(1) just to check element in or not
+	
+	
+        private int generateGCD(int a,int b){
+    
+        	if (b==0) return a;
+        	else return generateGCD(b,a%b);
+        	
 
 
 Graph:
