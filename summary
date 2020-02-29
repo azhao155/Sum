@@ -28,6 +28,8 @@ public boolean dfs(boolean[][] adj, int[] visited, StringBuilder sb, int i) {
 
 	if there is word list, could try to build trie to save time.
 	
+	filesystem is also like trie
+	
 	
 	stack to mimic dfs, if there is no more to go, pop, else add related elements into stack
 
@@ -238,6 +240,7 @@ Tree:
 	dfs build map, bfs test distance
 	
 	BST: in order traverse should be sorted array
+	complete tree's left and right tree are complete tree, easy to compute size
 	
 use dfs to level traverse:
 
