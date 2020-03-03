@@ -65,6 +65,8 @@ binaray search 比较三个点， mid ， target
 
 有些题要找规律，好几轮
 
+如果是1 3 2 pattern，找中间的，先确定
+
 Design data structure: 
 1.	LRU: 
 Get: remove, then add
