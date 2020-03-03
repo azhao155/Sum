@@ -67,6 +67,16 @@ binaray search 比较三个点， mid ， target
 
 如果是1 3 2 pattern，找中间的，先确定
 
+left1 < right2 && left2 < right1 overlap
+
+假设一个
+
+匹配，都是用stack
+
+all positive could use negative to indicate traversed
+
+
+
 Design data structure: 
 1.	LRU: 
 Get: remove, then add
@@ -94,6 +104,8 @@ Link List:
     
         	if (b==0) return a;
         	else return generateGCD(b,a%b);
+		
+	get mid: use faster, slow pointer
         	
 
 
@@ -162,7 +174,8 @@ DP:
    
 Please note that the outer loop should be about coins, while the inner loop should be about amount. Or else, there may be duplicates in the result, e.g. for input: amount = 5, coins = [1, 2, 5], it counts [2, 2, 1] and [2, 1, 2] as two different combinations, so it will return 9 rather than 5. All in all, the order of coins doesn't matterin this case, so we set it as the outer loop.
 
-   
+
+sometimes need to reversly thinking, state varible like dfs params, and think about how to bottom down
 
 Binary Search:
 	要去掉连续的一段
