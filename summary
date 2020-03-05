@@ -1,3 +1,5 @@
+queue, create full/empty two semaphore
+
 Topology sort:
   BFS: degree and neighbour, once degree equal 0, add into result
   	test distance
@@ -74,6 +76,8 @@ left1 < right2 && left2 < right1 overlap
 假设一个
 
 匹配，都是用stack
+
+变长又变短也可以stack，level相关也可以用stack
 
 all positive could use negative to indicate traversed
 
