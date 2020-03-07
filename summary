@@ -1,4 +1,6 @@
 queue, create full/empty two semaphore
+palindra 改变最小的方法是只改变低位
+longest sequence, if dp, use 前几个， 或者two pointer
 
 Topology sort:
   BFS: degree and neighbour, once degree equal 0, add into result
@@ -44,6 +46,8 @@ Sort:
 	use binaray search tree to comapare large small and stats
  
 Array :   
+	keep value but only make negative for positive value
+	subsequence which means order matters, so could use two pointer, make sure it always proceed.
 	rate limit using circular buff.
 
 	Hash 作为记忆的方法: 2sum 
@@ -66,6 +70,8 @@ public int partition(int[] A){
 max stack, 相等或者大于先压最大值
 
 binaray search 比较三个点， mid ， target
+
+string sorted, 相邻的是prefix关系
 
 有些题要找规律，好几轮
 
@@ -176,6 +182,17 @@ DP:
         }
     }
     
+longest subsequence:
+        for (int i = s.length() - 1; i >= 0; i--) {
+            dp[i][i] = 1;
+            for (int j = i+1; j < s.length(); j++) {
+                if (s.charAt(i) == s.charAt(j)) {
+                    dp[i][j] = dp[i+1][j-1] + 2;
+                } else {
+                    dp[i][j] = Math.max(dp[i+1][j], dp[i][j-1]);
+                }
+            }
+    
    revserse same as traverse
    
 Please note that the outer loop should be about coins, while the inner loop should be about amount. Or else, there may be duplicates in the result, e.g. for input: amount = 5, coins = [1, 2, 5], it counts [2, 2, 1] and [2, 1, 2] as two different combinations, so it will return 9 rather than 5. All in all, the order of coins doesn't matterin this case, so we set it as the outer loop.
@@ -284,6 +301,8 @@ use dfs to level traverse:
         travel(curr.left, sol, level + 1);
         travel(curr.right, sol, level + 1);
     }
+    
+加减乘除， 需要一个running sum， 加一个prev
 	
 	
 public List<Integer> inorderTraversal(TreeNode root) {
