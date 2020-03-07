@@ -1,6 +1,7 @@
 queue, create full/empty two semaphore
 palindra 改变最小的方法是只改变低位
-longest sequence, if dp, use 前几个， 或者two pointer
+longest sequence, if dp, use 前几个， 或者two pointer，same order 
+medium : two pq
 
 Topology sort:
   BFS: degree and neighbour, once degree equal 0, add into result
