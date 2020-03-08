@@ -119,6 +119,7 @@ Link List:
         	else return generateGCD(b,a%b);
 		
 	get mid: use faster, slow pointer
+	sometimes, use double link list to reverse
         	
 
 
