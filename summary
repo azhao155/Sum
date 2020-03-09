@@ -47,7 +47,7 @@ Sort:
 	use binaray search tree to comapare large small and 比大小stats个数
  
 Array :   
-	keep value but only make negative for positive value
+	keep value but only mark as negative for positive value
 	subsequence which means order matters, so could use two pointer, make sure it always proceed.
 	rate limit using circular buff.
 
