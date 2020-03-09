@@ -72,7 +72,7 @@ max stack, 相等或者大于先压最大值
 
 binaray search 比较三个点， mid ， target , mid 在不同情况分类讨论
 
-string sorted, 相邻的是prefix关系
+string sorted, 相邻的是prefix关系, 只会比较prefix，是接近的
 
 有些题要找规律，好几轮
 
