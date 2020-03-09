@@ -44,7 +44,7 @@ continous array:
     
 Sort:
 	binaray search the ordered array
-	use binaray search tree to comapare large small and stats
+	use binaray search tree to comapare large small and 比大小stats个数
  
 Array :   
 	keep value but only make negative for positive value
