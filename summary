@@ -1,5 +1,5 @@
 queue, create full/empty two semaphore
-palindra 改变最小的方法是只改变低位
+palindrome 改变数值最小的方法是只改变低位去match高位
 longest sequence, if dp, 状态方程用前几个， 或者two pointer，same order 
 medium : two pq
 
