@@ -207,7 +207,7 @@ Binary Search:
 
 DP: 
 	考虑最后一步，往往是包含这个元素
-	contious, dp status will including trailing element
+	contious requirement, like subarray, dp status will including trailing element.
 
 
 PriorityQueue：
