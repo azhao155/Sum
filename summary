@@ -556,7 +556,7 @@ for (int i=0; i<n/2; i++)
     if calculate maximum, first voilate the condition then move left pointer
     
 topology sort:
-	neight + indgree
+	neighour relation graph + indgree array
 	
 Trie: get word in alphabetical order
 
