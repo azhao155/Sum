@@ -163,9 +163,9 @@ union find to merge collection
 
 Palindrome :
 	Dp  substring 顺序
-	  for (int i = n - 1; i >= 0; i--) {
-    for (int j = i; j < n; j++) {
-      dp[i][j] = s.charAt(i) == s.charAt(j) && (j - i < 3 || dp[i + 1][j - 1]);
+	for (int i = n - 1; i >= 0; i--) {
+    		for (int j = i; j < n; j++) {
+      			dp[i][j] = s.charAt(i) == s.charAt(j) && (j - i < 3 || dp[i + 1][j - 1]);
       
 how to check two strings together is palindrome:
 Case1: If s1 is a blank string, then for any string that is palindrome s2, s1+s2 and s2+s1 are palindrome.
