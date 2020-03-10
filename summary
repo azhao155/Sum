@@ -353,7 +353,7 @@ Test justification:
  	try to add the current work, wordlist, accuLen
 
 Next permutation:
-	reverse sort, find a little bit larger, reverse again.
+	find first turning point before reverse sort, find a little bit larger, reverse again.
 	
 nested string:
 	stack, cur_string, cur_num
