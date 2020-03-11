@@ -23,3 +23,137 @@ us: user mode
 sy: system mode
 id: idle
 wa: waiting for io
+
+
+use strace to see ls:
+adamf@kid-charlemagne:~/foo$ strace bash
+execve("/bin/bash", ["bash"], [/* 30 vars */]) = 0
+
+[... wow that's a lot of output ...]
+
+write(2, "adamf@kid-charlemagne:~/foo$ ", 29adamf@kid-charlemagne:~/foo$ ) = 29
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+read(0,
+
+
+stat("/usr/local/sbin/ls", 0x7fff03f1fd60) = -1 ENOENT (No such file or directory)
+stat("/usr/local/bin/ls", 0x7fff03f1fd60) = -1 ENOENT (No such file or directory)
+stat("/usr/sbin/ls", 0x7fff03f1fd60)    = -1 ENOENT (No such file or directory)
+stat("/usr/bin/ls", 0x7fff03f1fd60)     = -1 ENOENT (No such file or directory)
+stat("/sbin/ls", 0x7fff03f1fd60)        = -1 ENOENT (No such file or directory)
+stat("/bin/ls", {st_mode=S_IFREG|0755, st_size=114032, ...}) = 0
+stat("/bin/ls", {st_mode=S_IFREG|0755, st_size=114032, ...}) = 0
+
+
+
+pipe([3, 4])                            = 0
+clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f2c853217c0) = 30125
+
+start ls：
+1.stat
+
+A system call executes in the kernel mode. Every system call has a number
+associated with it. This number is passed to the kernel and that's how the
+kernel knows which system call was made. When a user program issues a system
+call, it is actually calling a library routine. The library routine issues a
+trap to the Linux operating system by executing INT 0x80 assembly instruction.
+It also passes the system call number to the kernel using the EAX register. The
+arguments of the system call are also passed to the kernel using other
+registers (EBX, ECX, etc.). The kernel executes the system call and returns the
+result to the user program using a register. If the system call needs to supply
+the user program with large amounts of data, it will use another mechanism
+(e.g., copy_to_user call).
+
+from inode to stat struct
+
+
+debugging process io issue:
+1.Vmstat
+2. check uninterrupt process
+
+
+lsof:
+Open files in the system include disk files, named pipes, network sockets and devices opened by all processes. One use for this command is when a disk cannot be unmounted because (unspecified) files are in use. The listing of open files can be consulted (suitably filtered if necessary) to identify the process that is using the files.
+
+python:
+L = ["Geeks\n", "for\n", "Geeks\n"] 
+  
+# Writing to a file 
+file1 = open('myfile.txt', 'w') 
+file1.writelines((L)) 
+file1.close() 
+  
+# Using readline() 
+file1 = open('myfile.txt', 'r') 
+count = 0
+  
+while True: 
+    count += 1
+  
+    # Get next line from file 
+    line = file1.readline() 
+  
+    # if line is empty 
+    # end of file is reached 
+    if not line: 
+        break
+    print("Line{}: {}".format(count, line.strip())) 
+  
+file1.close() 
+
+Swap:
+
+Swap space is the second type of memory in modern Linux systems. The primary function of swap space is to substitute disk space for RAM memory when real RAM fills up and more space is needed.
+
+For example, assume you have a computer system with 8GB of RAM. If you start up programs that don’t fill that RAM, everything is fine and no swapping is required. But suppose the spreadsheet you are working on grows when you add more rows, and that, plus everything else that's running, now fills all of RAM. Without swap space available, you would have to stop working on the spreadsheet until you could free up some of your limited RAM by closing down some other programs.
+
+The kernel uses a memory management program that detects blocks, aka pages, of memory in which the contents have not been used recently. The memory management program swaps enough of these relatively infrequently used pages of memory out to a special partition on the hard drive specifically designated for “paging,” or swapping. This frees up RAM and makes room for more data to be entered into your spreadsheet. Those pages of memory swapped out to the hard drive are tracked by the kernel’s memory management code and can be paged back into RAM if they are needed.
+
+The total amount of memory in a Linux computer is the RAM plus swap space and is referred to as virtual memory.
+
+
+Buffer and Cache:
+Buffer和Cache的区别
+buffer与cache操作的对象就不一样。
+
+buffer（缓冲）是为了提高内存和硬盘（或其他I/0设备）之间的数据交换的速度而设计的。
+
+cache（缓存）是为了提高cpu和内存之间的数据交换速度而设计，也就是平常见到的一级缓存、二级缓存、三级缓存。
+
+cpu在执行程序所用的指令和读数据都是针对内存的，也就是从内存中取得的。由于内存读写速度慢，为了提高cpu和内存之间数据交换的速度，在cpu和内存之间增加了cache，它的速度比内存快，但是造价高，又由于在cpu内不能集成太多集成电路，所以一般cache比较小，以后intel等公司为了进一步提高速度，又增加了二级cache，甚至三级cache，它是根据程序的局部性原理而设计的，就是cpu执行的指令和访问的数据往往在集中的某一块，所以把这块内容放入cache后，cpu就不用在访问内存了，这就提高了访问速度。当然若cache中没有cpu所需要的内容，还是要访问内存的。
+
+缓冲（buffers）是根据磁盘的读写设计的，把分散的写操作集中进行，减少磁盘碎片和硬盘的反复寻道，从而提高系统性能。linux有一个守护进程定期清空缓冲内容（即写入磁盘），也可以通过sync命令手动清空缓冲。举个例子吧：我这里有一个ext2的U盘，我往里面cp一个3M的MP3，但U盘的灯没有跳动，过了一会儿（或者手动输入sync）U盘的灯就跳动起来了。卸载设备时会清空缓冲，所以有些时候卸载一个设备时要等上几秒钟。
+
+修改/etc/sysctl.conf中的vm.swappiness右边的数字可以在下次开机时调节swap使用策略。该数字范围是0～100，数字越大越倾向于使用swap。默认为60，可以改一下试试。–两者都是RAM中的数据。
+
+简单来说，buffer是即将要被写入磁盘的，而cache是被从磁盘中读出来的。
+
+buffer是由各种进程分配的，被用在如输入队列等方面。一个简单的例子如某个进程要求有多个字段读入，在所有字段被读入完整之前，进程把先前读入的字段放在buffer中保存。
+
+cache经常被用在磁盘的I/O请求上，如果有多个进程都要访问某个文件，于是该文件便被做成cache以方便下次被访问，这样可提高系统性能。
+
+
+Page:
+If data is written, it is first written to the Page Cache and managed as one of its dirty pages. Dirty means that the data is stored in the Page Cache, but needs to be written to the underlying storage device first. The content of these dirty pages is periodically transferred (as well as with the system calls sync or fsync) to the underlying storage device. The system may, in this last instance, be a RAID controller or the hard disk directly.
+File blocks are written to the Page Cache not just during writing, but also when reading files. For example, when you read a 100-megabyte file twice, once after the other, the second access will be quicker, because the file blocks come directly from the Page Cache in memory and do not have to be read from the hard disk again. The following example shows that the size of the Page Cache has increased after a good, 200-megabytes video has been played.
+
+fork vs vfork:
+Key Differences Between fork() and vfork()
+The primary difference between fork and vfork is that the child process created by the fork has a separate memory space from the parent process. However, the child process created by the vfork system call shares the same address space of its parent process.
+The child process created using fork execute simultaneously with the parent process. On the other hand, child process created using vfork suspend the execution of parent process till its execution is completed.
+As the memory space of parent and child process is separate modification done by any of the processes does not affect other’s pages. However, as the parent and child process shares the same memory address modification done by any process reflects in the address space.
+The system call fork() uses copy-on-write as an alternative, which let child and parent process share the same address space until any one of them modifies the pages. On the other hand, the vfork does not use copy-on-write.
+
+Column	Description
+USER	The user account under which this process is running
+PID	Process ID of this process
+%CPU	CPU time used by this process (in percentage).
+%MEM	Physical memory used by this process (in percentage).
+VSZ	Virtual memory used by this process (in bytes).
+RSS	Resident Set Size, the non-swappable physical memory used by this process (in KiB)
+TTY	Terminal from which this process is started. Question mark (?) sign represents that this process is not started from a terminal.
+STAT	Process state. Explained in next table.
+START	Starting time and date of this process
+TIME	Total CPU time used by this process
+COMMAND	The command with all its arguments which started this process
