@@ -157,3 +157,54 @@ STAT	Process state. Explained in next table.
 START	Starting time and date of this process
 TIME	Total CPU time used by this process
 COMMAND	The command with all its arguments which started this process
+
+
+top:
+PID: Shows task’s unique process id.
+PR: Stands for priority of the task.
+SHR: Represents the amount of shared memory used by a task.
+VIRT: Total virtual memory used by the task.
+USER: User name of owner of task.
+%CPU: Represents the CPU usage.
+TIME+: CPU Time, the same as ‘TIME’, but reflecting more granularity through hundredths of a second.
+SHR: Represents the Shared Memory size (kb) used by a task.
+NI: Represents a Nice Value of task. A Negative nice value implies higher priority, and positive Nice value means lower priority.
+%MEM: Shows the Memory usage of task.
+
+
+strace:
+To print the timestamp for each strace output line, use the option -t as shown below.
+
+   /proc/[pid]/stat
+          Status information about the process.  This is used by ps(1).
+          It is defined in the kernel source file fs/proc/array.c.
+          
+
+cgroup:
+Define the solution to problem
+Create a cgroup to handle the allocation
+Add applications to the group.
+Keep monitoring the group(happens as part of cgroups, we need not handle explicitly)
+
+ELF
+Program headers
+An ELF file consists of zero or more segments, and describe how to create a process/memory image for runtime execution. When the kernel sees these segments, it uses them to map them into virtual address space, using the mmap(2) system call. In other words, it converts predefined instructions into a memory image. If your ELF file is a normal binary, it requires these program headers. Otherwise, it simply won’t run. It uses these headers, with the underlying data structure, to form a process. This process is similar for shared libraries.
+Section headers
+The section headers define all the sections in the file. As said, this “view” is used for linking and relocation.
+
+
+static linker:
+
+Static linking is the process of copying all library modules used in the program into the final executable image. This is performed by the linker and it is done as the last step of the compilation process. The linker combines library routines with the program code in order to resolve external references, and to generate an executable image suitable for loading into memory. When the program is loaded, the operating system places into memory a single file that contains the executable code and data. This statically linked file includes both the calling program and the called program.
+
+dynamic linker:
+
+gdb: run as parent
+The debugger reads (ptrace peek) the binary instruction stored at this address, and saves it in its data structures.
+It writes an invalid instruction at this location. What ever this instruction, it just has to be invalid.
+When the debuggee reaches this invalid instruction (or, put more correctly, the processor, setup with the debuggee memory context), the it won't be able to execute it (because it's invalid).
+In modern multitask OSes, an invalid instruction doesn't crash the whole system, but it gives the control back to the OS kernel, by raising an interruption (or a fault).
+This interruption is translated by Linux into a SIGTRAP signal, and transmitted to the process ... or to it's parent, as the debugger asked for.
+The debugger gets the information about the signal, and checks the value of the debuggee's instruction pointer (i.e., where the trap occurred). If the IP address is in its breakpoint list, that means it's a debugger breakpoint (otherwise, it's a fault in the process, just pass the signal and let it crash).
+Now that the debuggee is stopped at the breakpoint, the debugger can let its user do what ever s/he wants, until it's time to continue the execution.
+To continue, the debugger needs to 1/ write the correct instruction back in the debuggee's memory, 2/ single-step it (continue the execution for one CPU instruction, with ptrace single-step) and 3/ write the invalid instruction back (so that the execution can stop again next time). And 4/, let the execution flow normally.
