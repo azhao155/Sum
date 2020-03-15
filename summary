@@ -160,6 +160,16 @@ Use rank to check cycle
 
 union find to merge collection
 
+二分图
+Initialize a color[] array for each node. Here are three states for colors[] array:
+0: Haven't been colored yet.
+1: Blue.
+-1: Red.
+For each node,
+
+If it hasn't been colored, use a color to color it. Then use the other color to color all its adjacent nodes (DFS).
+If it has been colored, check if the current color is the same as the color that is going to be used to color it. (Please forgive my english... Hope you can understand it.)
+
 
 Palindrome :
 	Dp  substring 顺序
