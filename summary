@@ -3,7 +3,7 @@ palindrome 改变数值最小的方法是只改变低位去match高位
 longest sequence, if dp, 状态方程用前几个， 或者two pointer，same order 
 medium : two pq
 
-semaphore: waiting on condtion, once continue, need to check condition again, and once it's done, need to releas the conditon
+semaphore: waiting on condtion, once continue, need to check condition again, and once it's done, need to release the conditon
 
 Topology sort:
   BFS: degree and neighbour, once degree equal 0, add into result
