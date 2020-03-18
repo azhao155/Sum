@@ -65,6 +65,9 @@ public int partition(int[] A){
     return q;
 }
 
+找符合的长度，可以用binary search
+可以用fix windows hash作为substring查找的key
+
 标记方法就是对正数加一个负号
 不讲究order的都可以考虑用map
 
